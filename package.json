@@ -1,0 +1,15 @@
+{
+  "name": "weibo-pic",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "request": "^2.79.0"
+  }
+}
