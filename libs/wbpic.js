@@ -2,7 +2,7 @@
  * @Author: Rekey
  * @Date: 2016/12/21
  * @Last Modified by: RekeyLuo
- * @Last Modified time: 2017-01-06 23:18:13
+ * @Last Modified time: 2017-01-06 23:26:02
  */
 
 'use strict';
@@ -42,8 +42,8 @@ class WBPic {
         defer.reject(err);
         return;
       }
-      let resp = JSON.parse(body.replace(replaceStr, ''));
-      resp = JSON.parse(body.replace(replaceStr2, ''));
+      let resp = body.replace(replaceStr, '');
+      resp = JSON.parse(resp.replace(replaceStr2, ''));
       /** @namespace resp.data.pics */
       const picKeys = Object.keys(resp.data.pics);
       const pics = picKeys.map((key) => {
