@@ -1,8 +1,8 @@
 /*
  * @Author: Rekey
  * @Date: 2016/12/21
- * @Last Modified by: Rekey
- * @Last Modified time: 2016/12/21
+ * @Last Modified by: RekeyLuo
+ * @Last Modified time: 2017-01-06 23:18:13
  */
 
 'use strict';
@@ -17,7 +17,8 @@ const pid2url = require('./pid2url.js');
 class WBPic {
   static upload(cookie, file) {
     const uri = 'http://picupload.service.weibo.com/interface/pic_upload.php?wm=3&exif=1';
-    const replaceStr = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script type="text/javascript">document.domain="sina.com.cn";</script>';
+    const replaceStr = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
+    const replaceStr2 = '<script type="text/javascript">document.domain="sina.com.cn";</script>';
     const defer = Promise.defer();
     const formData = {
       app: 'miniblog',
@@ -41,7 +42,8 @@ class WBPic {
         defer.reject(err);
         return;
       }
-      const resp = JSON.parse(body.replace(replaceStr, ''));
+      let resp = JSON.parse(body.replace(replaceStr, ''));
+      resp = JSON.parse(body.replace(replaceStr2, ''));
       /** @namespace resp.data.pics */
       const picKeys = Object.keys(resp.data.pics);
       const pics = picKeys.map((key) => {

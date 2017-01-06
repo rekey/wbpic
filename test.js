@@ -1,8 +1,8 @@
 /*
  * @Author: Rekey
  * @Date: 2016/12/21
- * @Last Modified by: Rekey
- * @Last Modified time: 2016/12/21
+ * @Last Modified by: RekeyLuo
+ * @Last Modified time: 2017-01-06 23:19:03
  */
 
 'use strict';
@@ -12,7 +12,7 @@ const WBPic = require('./libs/wbpic.js');
 
 const wbPic = new WBPic('weibo cookie');
 
-wbPic.upload(path.resolve(__dirname, 'test.jpg'))
-  .then((pics) => {
+WBPic.upload('weibo cookie','d:\\test.png')
+.then((pics) => {
     console.log(pics);
   });
