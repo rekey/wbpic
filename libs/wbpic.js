@@ -2,7 +2,7 @@
  * @Author: Rekey
  * @Date: 2016/12/21
  * @Last Modified by: RekeyLuo
- * @Last Modified time: 2017-01-06 23:26:02
+ * @Last Modified time: 2017-01-07 21:41:46
  */
 
 'use strict';
@@ -35,7 +35,9 @@ class WBPic {
       formData: formData,
       method: 'post',
       headers: {
-        'Cookie': cookie
+        'Cookie': cookie,
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+        'Referer': 'http://weibo.com/u/3766716287/home'
       }
     }, (err, httpResponse, body) => {
       if (err) {
