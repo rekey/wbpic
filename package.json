@@ -1,6 +1,6 @@
 {
   "name": "weibo-pic",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "upload pic to weibo",
   "author": "Rekey",
   "main": "index.js",
