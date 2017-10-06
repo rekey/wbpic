@@ -1,11 +1,8 @@
 /// <reference path="../../typings/index.d.ts" />
-/**
- * Created by Rekey on 2017/10/7.
- */
 'use strict';
 
-const WBPic = require('../../build/index.js');
-const request = require('request');
+import WBPic = require('../index');
+import request = require('request');
 
 const COOKIE_REGEX = /^SUB=.*?;/;
 
@@ -60,7 +57,7 @@ async function login(username: string, password: string) {
 (async () => {
   try {
     const user = await login('username', 'password');
-    const wbpic = new WBPic(user.cookie, user.uid);
+    const wbpic = new WBPic(user.cookie);
     const pic = await wbpic.upload('/tmp/test.png');
     // const pic = await WBPic.upload(user.cookie, '/tmp/test.png', user.uid);
     console.log(pic);
