@@ -5,12 +5,15 @@
   "author": "Rekey",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "ISC",
   "dependencies": {
-    "bluebird": "^3.4.6",
-    "request": "^2.79.0"
+    "@types/node": "^8.0.32",
+    "bluebird": "^3.5.1",
+    "debug": "^3.1.0",
+    "request": "^2.83.0"
   },
   "devDependencies": {},
   "repository": {
