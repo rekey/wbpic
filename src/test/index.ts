@@ -58,7 +58,7 @@ async function login(username: string, password: string) {
   try {
     const user = await login('username', 'password');
     const wbpic = new WBPic(user.cookie);
-    const pic = await wbpic.upload('/tmp/test.png');
+    const pic = await wbpic.upload('/tmp/20a3b97f-e47d-400e-9cb0-7b5289ecb214-image.jpg');
     // const pic = await WBPic.upload(user.cookie, '/tmp/test.png', user.uid);
     console.log(pic);
   } catch (e) {
