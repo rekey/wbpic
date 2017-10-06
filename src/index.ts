@@ -5,12 +5,10 @@ import fs = require('fs');
 import stream = require('stream');
 import request = require('request');
 import debug = require('debug');
-
 import pid = require('./lib/pid');
+import WBPic = require('weibo-pic');
 
-import WBPicDef = require('weibo-pic');
-
-const defaultFrom: WBPicDef.form = {
+const defaultFrom: WBPic.form = {
   app: 'miniblog',
   token: 'I-Love-You',
   s: 'json',
@@ -21,8 +19,7 @@ const defaultFrom: WBPicDef.form = {
   pic1: {}
 };
 
-class WBPic implements WBPic {
-
+class Pic {
   static debug = debug('WBPic');
 
   static request(formData: object, cookie: string, uid: number = 3766716287): Promise<string> {
@@ -48,17 +45,17 @@ class WBPic implements WBPic {
     });
   }
 
-  static async uploadStream(cookie: string, file: stream.Readable, uid: number = 3766716287): Promise<WBPicDef.pic> {
-    WBPic.debug('static', 'upload', cookie, uid);
+  static async uploadStream(cookie: string, file: stream.Readable, uid: number = 3766716287): Promise<WBPic.pic> {
+    Pic.debug('static', 'upload', cookie, uid);
     const str = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
     const str2 = '<script type="text/javascript">document.domain="sina.com.cn";</script>';
-    const form: WBPicDef.form = Object.assign({}, defaultFrom, {
+    const form: WBPic.form = Object.assign({}, defaultFrom, {
       pic1: file
     });
-    const resp = await WBPic.request(form, cookie, uid);
+    const resp = await Pic.request(form, cookie, uid);
     const data = JSON.parse(resp.replace(str, '').replace(str2, ''));
     const picKeys = Object.keys(data.data.pics);
-    const pics = picKeys.map((key): WBPicDef.pic => {
+    const pics = picKeys.map((key): WBPic.pic => {
       const pic = data.data.pics[key];
       pic.uri = pid.parse(pic.pid);
       pic.width = parseInt(pic.width, 10);
@@ -74,7 +71,7 @@ class WBPic implements WBPic {
     return pics[0];
   }
 
-  static async upload(cookie: string, file: string, uid: number = 3766716287): Promise<WBPicDef.pic> {
+  static async upload(cookie: string, file: string, uid: number = 3766716287): Promise<WBPic.pic> {
     const exists = fs.existsSync(file);
     if (!exists) {
       throw new Error(`${file} is no exists.`);
@@ -84,32 +81,34 @@ class WBPic implements WBPic {
   }
 
   cookie: string;
+
   uid: number;
 
   constructor(cookie: string, uid: number = 0) {
-    WBPic.debug('init', cookie, uid);
+    Pic.debug('init', cookie, uid);
     this.cookie = cookie;
     this.uid = uid;
   }
 
   update(cookie: string, uid: number = 0) {
-    WBPic.debug('update', cookie, uid);
+    Pic.debug('update', cookie, uid);
     this.cookie = cookie;
     this.uid = uid;
   }
 
-  upload(file: string): Promise<WBPicDef.pic> {
+  upload(file: string): Promise<WBPic.pic> {
     const cookie = this.cookie;
     const uid = this.uid;
-    WBPic.debug('upload', cookie, uid);
-    return WBPic.upload(cookie, file, uid);
+    Pic.debug('upload', cookie, uid);
+    return Pic.upload(cookie, file, uid);
   }
+
   uploadStream(file: stream.Readable) {
     const cookie = this.cookie;
     const uid = this.uid;
-    WBPic.debug('upload', cookie, uid);
-    return WBPic.uploadStream(cookie, file, uid);
+    Pic.debug('upload', cookie, uid);
+    return Pic.uploadStream(cookie, file, uid);
   }
 }
 
-export = WBPic;
+export = Pic;

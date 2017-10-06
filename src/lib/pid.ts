@@ -1,6 +1,6 @@
 'use strict';
 
-import WBPicD = require('WBPic');
+import WBPic = require('weibo-pic');
 
 function random(min: number, max: number): number {
   return Math.floor(Math.random() * max) + min;
@@ -12,7 +12,7 @@ function pid2url(pid: string, type: string): string {
   return `https://ws${rand}.sinaimg.cn/${type}/${pid}.${ext}`;
 }
 
-function parse(pid: string): WBPicD.uri {
+function parse(pid: string): WBPic.uri {
   if (!pid) {
     return {};
   }
