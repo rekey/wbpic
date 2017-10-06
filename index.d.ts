@@ -1,6 +1,6 @@
 /// <reference path="typings/index.d.ts" />
-
 declare module 'WBPic' {
+  import stream = require('stream');
   namespace WBPic {
     interface uri {
       thumb?: string;
@@ -39,6 +39,8 @@ declare module 'WBPic' {
   class WBPic {
     static upload(cookie: string, file: string, uid?: number): WBPic.upload;
 
+    static uploadStream(cookie: string, file: stream.Readable, uid?: number): WBPic.upload;
+
     cookie: string;
     uid: number;
 
@@ -47,6 +49,8 @@ declare module 'WBPic' {
     update(cookie: string, uid: number): void;
 
     upload(file: string): WBPic.upload;
+
+    uploadStream(file: stream.Readable): WBPic.upload;
   }
 
   export = WBPic
