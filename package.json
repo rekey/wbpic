@@ -1,6 +1,6 @@
 {
   "name": "weibo-pic",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "upload pic to weibo",
   "engines": {
     "node": ">=7.6.0"
@@ -17,7 +17,8 @@
   "files": [
     "build",
     "src",
-    "index.d.ts"
+    "index.d.ts",
+    "typings"
   ],
   "license": "ISC",
   "dependencies": {
