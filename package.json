@@ -22,7 +22,7 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^8.0.32",
+    "@types/node": "^8.0.33",
     "bluebird": "^3.5.1",
     "debug": "^3.1.0",
     "request": "^2.83.0"
