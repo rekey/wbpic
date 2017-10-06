@@ -1,5 +1,5 @@
 /// <reference path="typings/index.d.ts" />
-declare module 'WBPic' {
+declare module 'weibo-pic' {
   import stream = require('stream');
   namespace WBPic {
     interface uri {
