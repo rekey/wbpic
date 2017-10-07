@@ -77,7 +77,7 @@ class Pic {
       throw new Error(`${file} is no exists.`);
     }
     const fileStream = fs.createReadStream(file);
-    return WBPic.uploadStream(cookie, fileStream, uid);
+    return Pic.uploadStream(cookie, fileStream, uid);
   }
 
   cookie: string;
